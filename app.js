@@ -23,7 +23,7 @@ const articleSchema = new mongoose.Schema({
 });
 
 const Article = new mongoose.model("Article", articleSchema);
-
+////////////////////////////// Requests targeting ALL articles ////////////////////////////////
 app.route("/articles")
 
 .get(function(req, res){
@@ -63,6 +63,57 @@ app.route("/articles")
         }
     });
 });
+
+////////////////////////////// Requests targeting A Specific article ////////////////////////////////
+
+app.route("/articles/:articleTitle")
+.get(function(req, res){
+    Article.findOne({title: req.params.articleTitle}, function(err, foundArticle){
+        if (!err){
+            res.send(foundArticle);
+        } else {
+            res.send("No article with that title was found!");
+        }
+    });
+
+})
+
+.put(function(req, res){
+
+    Article.replaceOne(
+        {title: req.params.articleTitle},
+        req.body,
+        function(err){
+            if (!err){
+                res.send("Successfully updated the article!")
+            }
+        }
+    )
+})
+
+.patch(function(req, res){
+    Article.updateOne(
+        {title: req.params.articleTitle},
+        req.body,
+        function(err){
+            if (!err){
+                res.send("Successfully updated the article.")
+            } else {
+                res.send(err);
+            }
+        }
+        )
+})
+
+.delete(function(req, res){
+    Article.deleteOne({title: req.params.articleTitle}, function(err){
+        if (!err){
+            res.send("Succesfully deleted the article");
+        }
+    })
+});
+
+
 
 app.listen(3000, function(req, res){
     console.log("Server is listening on port 3000");
