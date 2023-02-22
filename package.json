@@ -1,0 +1,25 @@
+{
+  "name": "codeinfo-api",
+  "version": "1.0.0",
+  "description": "This is a simple RESTful API that has information on some programming terms.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihirpathak267/CodeInfo-API.git"
+  },
+  "author": "Mihir Pathak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mihirpathak267/CodeInfo-API/issues"
+  },
+  "homepage": "https://github.com/mihirpathak267/CodeInfo-API#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.2"
+  }
+}
